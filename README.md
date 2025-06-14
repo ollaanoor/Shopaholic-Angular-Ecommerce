@@ -1,6 +1,6 @@
-# 🛍 Shopaholic – Sleek E-Commerce Platform
+# 🛍 Shopaholic E-Commerce Platform
 
-Welcome to **Shopaholic**, a modern and minimalistic e-commerce platform designed for effortless shopping and elegant aesthetics.
+Welcome to **Shopaholic**, a modern, sleek and minimalistic e-commerce platform designed for effortless shopping and elegant aesthetics.
 
 ## 🌟 Features
 - 🔍 **Smart Search** – Instantly find products with a dynamic search bar using **signals** for real-time updates.
