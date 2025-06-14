@@ -1,6 +1,31 @@
-# Shopaholic
+# 🛍 Shopaholic – Sleek E-Commerce Platform
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+Welcome to **Shopaholic**, a modern and minimalistic e-commerce platform designed for effortless shopping and elegant aesthetics.
+
+## 🌟 Features
+- 🔍 **Smart Search** – Instantly find products with a dynamic search bar using **signals** for real-time updates.
+- 🛒 **Cart & Wishlist** – Seamlessly add products using optimized **services** for efficient state management.
+- 🎭 **Animated UI** – Smooth animations for an engaging experience.
+- 🏷 **Category Swiper** – Explore product categories with a stylish responsive carousel powered by Swiper.js.
+- 🔔 **Toast Notifications** – Get instant feedback with auto-dismiss toasts for cart, wishlist, and admin actions.
+- 🔐 **Admin Panel** – Manage products, orders, and users efficiently with **route guards** for access control.
+- 🌎 **Fully Responsive Design** – Optimized layout using **Tailwind CSS** to ensure an effortless experience across all devices.
+
+## 🚀 Tech Stack
+- **Frontend**: Angular, TypeScript, Tailwind CSS  
+- **Backend**: JSON Server and JSON Server Auth (Mock API)  
+- **UI Components**: DaisyUI, Angular Material, Swiper.js  
+- **State Management**: Angular signals for real-time updates and improved rendering performance
+- **Routing**: Angular Router with route guards for user authentication and admin access
+
+## 🔧 Installation
+Clone the repository and install dependencies:
+
+```sh
+git clone https://github.com/ollaanoor/Shopaholic-Angular-Ecommerce-.git
+cd shopaholic
+npm install
+```
 
 ## Development server
 
@@ -10,50 +35,69 @@ To start a local development server, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. 
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Run the json server
 
 ```bash
-ng generate component component-name
+npx json-server-auth db.json
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Folder structure
+/src
+ ├── /app
+ │   ├── /components       # UI Components
+ │   ├── /services         # API & Data Services
+ │   ├── /pages            # Main Pages (Home, About, Admin)
+ │   ├── /assets           # Images & Icons
+ │   ├── /styles           # Global Styles
+ ├── db.json               # Mock Database
+ ├── angular.json          # Angular Config
+ ├── package.json          # Dependencies
 
-```bash
-ng generate --help
-```
+## 🖥️ Desktop View
+![Homepage - Desktop](src/assets/screenshots/home.png)
+![Homepage2 - Desktop](src/assets/screenshots/home-products.png)
 
-## Building
+## 📱 Mobile View
+![Homepage - Mobile](src/assets/screenshots/home-mobile.png)
 
-To build the project run:
+## Register
+![Register - Desktop](src/assets/screenshots/register-step-1.png)
+![Register - Desktop2](src/assets/screenshots/register-step-2.png)
 
-```bash
-ng build
-```
+## Login
+![Login - Desktop](src/assets/screenshots/login.png)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Category
+![Category - Desktop](src/assets/screenshots/category.png)
 
-## Running unit tests
+## Wishlist
+![Wishlist - Desktop](src/assets/screenshots/wishlist.png)
+![Wishlist - Mobile](src/assets/screenshots/wishlist-mobile.png)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Product Page & Cart 
+# (desktop view)
+![Product Page - Desktop](src/assets/screenshots/product-page.png)
+![Cart Page - Desktop](src/assets/screenshots/cart.png)
 
-```bash
-ng test
-```
+# (mobile view)
+![Product Page - Mobile](src/assets/screenshots/product-mobile.png)
+![Cart Page - Mobile](src/assets/screenshots/cart-mobile.png)
 
-## Running end-to-end tests
+## User Profile
+![Profile - Mobile](src/assets/screenshots/profile.png)
+![Edit Profile - Mobile](src/assets/screenshots/edit-profile.png)
 
-For end-to-end (e2e) testing, run:
+## Admin
+# Product Manager
+![Admin Home - Desktop](src/assets/screenshots/admin-product-manager.png)
+![Admin Search - Desktop](src/assets/screenshots/admin-product-manager-search.png)
+![Admin Add Product - Desktop](src/assets/screenshots/admin-add-product.png)
+![Admin Update Product - Desktop](src/assets/screenshots/admin-update-product.png)
 
-```bash
-ng e2e
-```
+# Order Manager
+![Admin Order - Desktop](src/assets/screenshots/admin-order-manager.png)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🎥 Demo Video
+[Watch the Demo](https://drive.google.com/file/d/1K3ph5oBJpHlH2unBS_CnNydgPH_jnlnj/view?usp=drive_link)

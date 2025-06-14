@@ -1,0 +1,229 @@
+<div class="max-w-6xl mx-auto px-6 py-10">
+  <!-- Header -->
+  <div
+    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+  >
+    <h2 class="text-2xl font-bold text-gray-800">Manage Products</h2>
+    <button
+      (click)="openModal()"
+      class="bg-green-600 text-white px-4 py-2 text-sm rounded-md hover:bg-green-700 transition"
+    >
+      + Add Product
+    </button>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="relative flex justify-center mb-10">
+    <label
+      class="input input-lg rounded-4xl w-full md:w-1/2 flex items-center gap-2"
+    >
+      <svg
+        class="h-5 w-5 opacity-50"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <g
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          stroke-width="2.5"
+          fill="none"
+          stroke="currentColor"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </g>
+      </svg>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="filteredProducts()"
+        class="w-1/2 px-4 py-2"
+        placeholder="Search by product name..."
+      />
+    </label>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+    <div
+      *ngFor="let product of filteredProducts()"
+      class="group w-64 bg-white rounded-2xl border border-gray-200 shadow hover:shadow-lg transition p-2 flex flex-col cursor-default"
+    >
+      <!-- Image -->
+      <div class="overflow-hidden rounded-xl bg-gray-50">
+        <img
+          [src]="
+            product.image || 'https://via.placeholder.com/300x200?text=No+Image'
+          "
+          alt="{{ product.title }}"
+          class="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+
+      <!-- Info -->
+      <div class="flex-grow flex flex-col justify-between mt-3 space-y-1">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-gray-800 text-sm truncate">
+            {{ product.title }}
+          </h3>
+          <span class="text-gray-900 text-sm font-semibold"
+            >$ {{ product.price }}</span
+          >
+        </div>
+
+        <p class="text-xs text-gray-500">{{ product.category }}</p>
+
+        <p class="text-[13px] text-gray-700 line-clamp-2 leading-tight">
+          {{ product.description }}
+        </p>
+
+        <p *ngIf="product.sizes?.length" class="text-xs text-gray-600 mt-1">
+          <span class="font-semibold">Available Sizes: </span
+          ><span class="font-medium">{{ product.sizes.join(", ") }}</span>
+        </p>
+
+        <!-- Action Icons -->
+        <div class="flex justify-end gap-2 pt-2">
+          <!-- Edit Icon -->
+          <button
+            (click)="openModal(product)"
+            class="text-gray-600 hover:text-blue-600 transition cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              />
+            </svg>
+          </button>
+
+          <!-- Delete Icon -->
+          <button
+            (click)="deleteProduct(product.id)"
+            class="text-gray-600 hover:text-red-500 transition cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reusable Product Modal -->
+  <div
+    *ngIf="isModalOpen()"
+    class="fixed inset-0 z-50 flex items-center justify-center hero-overlay"
+  >
+    <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md max-h-[90vh] overflow-auto relative">
+      <h3 class="text-xl font-semibold text-gray-800 mb-5">
+        {{ modalTitle() }}
+      </h3>
+
+      <form
+        #productForm="ngForm"
+        (ngSubmit)="submitProduct(productForm.value)"
+        class="space-y-2"
+      >
+        <label class="text-gray-700 text-sm font-medium">Title</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="selectedProductData.title"
+          required
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-400"
+          placeholder="Title"
+        />
+
+        <label class="text-gray-700 text-sm font-medium">Category</label>
+        <input
+          type="text"
+          name="category"
+          [(ngModel)]="selectedProductData.category"
+          required
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-400"
+          placeholder="Category"
+        />
+
+        <label class="text-gray-700 text-sm font-medium">Image</label>
+        <input
+          type="text"
+          name="image"
+          [(ngModel)]="selectedProductData.image"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-400"
+          placeholder="Image URL"
+        />
+
+        <label class="text-gray-700 text-sm font-medium">Price</label>
+        <input
+          type="number"
+          name="price"
+          [(ngModel)]="selectedProductData.price"
+          required
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-400"
+          placeholder="Price"
+        />
+
+        <label class="text-gray-700 text-sm font-medium"
+          >Sizes (If available)</label
+        >
+        <input
+          type="text"
+          name="sizes"
+          [(ngModel)]="selectedProductData.sizes"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-400"
+          placeholder="Sizes (e.g. S, M, L, XL)"
+        />
+        <p class="text-xs text-gray-500 mt-1">Comma-separated values</p>
+
+        <label class="text-gray-700 text-sm font-medium"
+          >Description</label
+        >
+        <textarea
+          name="description"
+          [(ngModel)]="selectedProductData.description"
+          required
+          rows="3"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-400"
+          placeholder="Full product description..."
+        ></textarea>
+
+        <div class="flex justify-end gap-3 pt-2">
+          <button
+            type="button"
+            (click)="closeModal()"
+            class="bg-gray-300 text-gray-800 px-4 py-2 text-sm rounded-md hover:bg-gray-400"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="bg-gray-900 text-white px-5 py-2 text-sm rounded-md hover:bg-gray-700"
+          >
+            {{ actionButtonText() }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

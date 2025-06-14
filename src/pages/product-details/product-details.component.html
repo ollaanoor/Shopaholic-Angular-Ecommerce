@@ -1,0 +1,88 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Ensure the product is loaded -->
+  <ng-container *ngIf="product(); else loading">
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Product Image Section -->
+      <div class="w-full md:w-1/2 flex justify-center items-center">
+        <img
+          [src]="product()?.image"
+          [alt]="product()?.title"
+          class="w-full max-w-md h-auto object-cover rounded-lg shadow-md"
+        />
+      </div>
+      <!-- Product Details Section -->
+      <div class="w-full md:w-1/2 space-y-6">
+        <!-- Title and Category -->
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">
+            {{ product()?.title }}
+          </h1>
+          <p class="text-sm text-gray-600 mt-2">
+            {{ product()?.description }}
+          </p>
+          <p class="text-xs text-gray-500 mt-1">
+            Category: {{ product()?.category }}
+          </p>
+        </div>
+        <!-- Price -->
+        <p class="text-2xl font-semibold text-gray-700">
+          ${{ product()?.price }}
+        </p>
+        <!-- Size Selector (only if sizes exist) -->
+        <div *ngIf="product()?.sizes?.length" class="flex flex-col gap-1">
+          <label for="size" class="text-gray-700">Size:</label>
+          <select
+            id="size"
+            [(ngModel)]="selectedSize"
+            class="w-48 px-3 py-2 border rounded-md"
+          >
+            <option *ngFor="let size of product()?.sizes" [value]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+        <!-- Quantity Plus/Minus Selector -->
+        <div class="flex flex-col gap-1">
+          <label class="text-gray-700">Quantity:</label>
+          <div class="flex items-center space-x-2">
+            <button
+              (click)="decrementQuantity()"
+              class="px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-200 transition"
+            >
+              -
+            </button>
+            <span class="font-medium">{{ quantity }}</span>
+            <button
+              (click)="incrementQuantity()"
+              class="px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-200 transition"
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div
+          class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-4"
+        >
+          <button
+            (click)="addToCart()"
+            class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition flex-1 cursor-pointer"
+          >
+            Add to Cart
+          </button>
+          <button
+            (click)="toggleWishlist()"
+            class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-100 transition flex-1 cursor-pointer"
+          >
+            Add to Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Loading state -->
+  <ng-template #loading>
+    <p class="text-center text-gray-600">Loading product details...</p>
+  </ng-template>
+</div>

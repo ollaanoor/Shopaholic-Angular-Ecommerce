@@ -1,0 +1,251 @@
+<header
+  class="w-full shadow-sm bg-white px-10 py-3 flex items-center justify-between"
+>
+  <!-- Hamburger (Mobile only) -->
+  <button class="md:hidden" (click)="toggleMenu()">
+    <svg
+      class="w-6 h-6 text-gray-700"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+  </button>
+
+  <!-- Logo -->
+  <div
+    class="text-2xl font-bold text-gray-800 tracking-tight abril-fatface-regular"
+  >
+    <!-- <a routerLink="/">Shopaholic</a> -->
+    <a [routerLink]="getHomeLink()">Shopaholic</a>
+  </div>
+
+  <!-- Desktop Navigation -->
+  <nav class="hidden md:flex gap-6 text-gray-600 text-lg font-medium">
+    @if (this.authService.user()?.role === 'admin') {
+    <a
+      routerLink="/admin/products"
+      routerLinkActive="text-black"
+      class="hover:text-black transition"
+      >Products</a
+    >
+    <a
+      routerLink="/admin/orders"
+      routerLinkActive="text-black"
+      class="hover:text-black transition"
+      >Orders</a
+    >
+    } @else if (this.authService.user()?.role === 'user') {
+    <a
+      routerLink="/about"
+      routerLinkActive="text-black"
+      class="hover:text-black transition font-medium"
+      >About</a
+    >
+    <!-- Categories Dropdown -->
+    <div class="relative group">
+      <span
+        class="hover:text-black transition text-lg font-medium text-gray-600 cursor-pointer"
+        >Categories</span
+      >
+
+      <!-- Dropdown Content -->
+      <ul
+        class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 py-2"
+      >
+        <li
+          *ngFor="let category of this.productService.categories()"
+          class="px-4 py-2 hover:bg-gray-100 text-gray-700 text-lg"
+        >
+          <a
+            [routerLink]="['/category', category.slug || category.title]"
+            (click)="closeMenu()"
+            class="block w-full"
+            >{{ category.title }}</a
+          >
+        </li>
+      </ul>
+    </div>
+    }
+  </nav>
+
+  <div class="flex items-center gap-4">
+    @if (authService.isLoggedIn()) { @if (authService.user()?.role === 'user') {
+    <a routerLink="/wishlist" class="text-gray-600 hover:text-black transition">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+        />
+      </svg>
+    </a>
+    <a
+      routerLink="/cart"
+      class="relative text-gray-600 hover:text-black transition"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z"
+        />
+      </svg>
+      @if (getCartCount() > 0) {
+      <span
+        class="absolute -top-1.5 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1 py-0.25"
+      >
+        {{ getCartCount() }}
+      </span>
+      }
+    </a>
+    }
+
+    <!-- Profile Icon + Dropdown -->
+    <div class="relative" clickOutside (clickOutside)="closeProfileDropdown()">
+      <button (click)="toggleProfileDropdown()" class="p-2 focus:outline-none">
+        @if (this.authService.user()?.role === 'user') {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 text-gray-600 hover:text-black transition"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0zM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+          />
+        </svg>
+        } @else if (this.authService.user()?.role === 'admin') {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"
+          />
+        </svg>
+        }
+      </button>
+
+      @if (isProfileDropdownOpen()) {
+      <div
+        class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2"
+      >
+        @if (this.authService.user()?.role === 'user') {
+        <a
+          routerLink="/profile"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
+          (click)="closeMenu()"
+          >Profile</a
+        >}
+        <button
+          (click)="logout()"
+          class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
+        >
+          Logout
+        </button>
+      </div>
+      }
+    </div>
+    } @else {
+    <a routerLink="/login" class="block hover:text-black" (click)="closeMenu()"
+      >Log in</a
+    >
+    }
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div
+  *ngIf="isMenuOpen"
+  class="md:hidden bg-white shadow-md px-4 py-2 space-y-2 text-gray-600"
+>
+  @if (this.authService.user()?.role === 'admin') {
+  <a
+    routerLink="/admin/products"
+    class="block hover:text-black"
+    (click)="closeMenu()"
+    >Products</a
+  >
+  <a
+    routerLink="/admin/orders"
+    class="block hover:text-black"
+    (click)="closeMenu()"
+    >Orders</a
+  >
+  } @else if (this.authService.user()?.role === 'user') {
+  <!-- Toggle Categories Button -->
+  <button
+    (click)="toggleCategories()"
+    class="w-full text-left hover:text-black flex items-center gap-2"
+  >
+    Categories
+    <svg
+      class="inline w-4 h-4 ml-2"
+      [ngClass]="{ 'rotate-180': isCategoriesOpen }"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-4"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+      />
+    </svg>
+  </button>
+
+  <!-- Categories Section -->
+  <div
+    *ngIf="isCategoriesOpen"
+    class="mt-2 border-t border-b border-gray-300 py-2"
+  >
+    <ng-container *ngFor="let category of productService.categories()">
+      <a
+        [routerLink]="['/category', category.slug || category.title]"
+        (click)="closeMenu()"
+        class="block hover:text-black ml-5"
+      >
+        {{ category.title }}
+      </a>
+    </ng-container>
+  </div>
+
+  <a routerLink="/about" class="block hover:text-black" (click)="closeMenu()"
+    >About</a
+  >
+  }
+</div>

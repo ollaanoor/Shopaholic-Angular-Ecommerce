@@ -1,0 +1,132 @@
+<!-- <div class="px-4 py-8 min-h-screen">
+  <h2 class="text-base sm:text-lg font-bold mb-4 md:ml-15">Wishlist Items</h2>
+
+  <div
+    class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-7xl mx-auto"
+  >
+    <div
+      *ngFor="let item of wishlist"
+      class="bg-white shadow rounded-xl overflow-hidden transition-transform transform hover:-translate-y-1 hover:shadow-md"
+    >
+      <img
+        [src]="item.image"
+        alt="{{ item.title }}"
+        class="w-full h-32 object-cover"
+      />
+      <div class="p-3">
+        <h3 class="text-sm font-semibold text-gray-800 truncate">
+          {{ item.title }}
+        </h3>
+        <p class="text-xs text-gray-600 mt-1">${{ item.price }}</p>
+        <div class="flex items-center justify-end mt-2">
+          <button
+            (click)="toggleWishlist(item)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              [ngClass]="{
+                'fill-red-500 stroke-red-500': isInWishlist(item),
+                'fill-none stroke-gray-400': !isInWishlist(item)
+              }"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              class="size-6 transition-colors duration-200"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="px-4 py-8 min-h-screen">
+  <h2 class="text-base sm:text-lg font-bold mb-4 md:ml-15">Wishlist Items</h2>
+
+  @if ( this.productService.wishlist().length === 0) {
+  <div class="mx-auto mt-8 p-4 bg-white text-center">
+    <p class="text-gray-500">Your wishlist is empty.</p>
+  </div>
+  } @else {
+  <div
+    class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-7xl mx-auto"
+  >
+    <div
+      *ngFor="let item of this.productService.wishlist()"
+      class="relative group bg-white shadow rounded-2xl overflow-hidden h-64 transition-transform transform hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+    >
+      <!-- Full image background -->
+      <img
+        [src]="item.image"
+        alt="{{ item.title }}"
+        class="absolute inset-0 w-full h-full object-cover z-0"
+      />
+
+      <!-- Overlay for text -->
+      <div
+        class="absolute bottom-0 w-full p-3 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"
+      >
+        <h3
+          class="text-lg font-semibold text-white truncate hover:underline cursor-pointer"
+          [routerLink]="['/product', item.id]"
+        >
+          {{ item.title }}
+        </h3>
+        <p class="text-sm text-gray-200 mt-1">${{ item.price }}</p>
+      </div>
+
+      <!-- Heart button -->
+      <div class="absolute top-2 right-2 z-20">
+        <button (click)="toggleWishlist(item)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            [ngClass]="{
+              'fill-red-500 stroke-red-500': isInWishlist(item),
+              'fill-white stroke-gray-300': !isInWishlist(item)
+            }"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            class="size-6 transition-colors duration-200"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Heart button -->
+      <div class="absolute bottom-2 right-2 z-20">
+        <button
+          class="btn btn-circle w-8 h-8 mt-4 self-end text-gray-600 hover:text-black transform group-hover:scale-110 transition"
+          (click)="addToCart(item)"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            [ngClass]="{
+              'fill-gray-700 stroke-gray-400': isInCart(item),
+              'fill-none stroke-gray-400': !isInCart(item)
+            }"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>

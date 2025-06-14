@@ -1,0 +1,86 @@
+<div class="max-w-4xl mx-auto px-6 py-10">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Manage Orders</h2>
+
+  <!-- Orders List -->
+  <div class="space-y-6">
+    <div
+      *ngFor="let order of orders()"
+      class="bg-white p-6 rounded-xl shadow-md border border-gray-200"
+    >
+      <!-- Order Header -->
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <p class="text-lg font-semibold text-gray-800">
+              Order #{{ order.id }}
+            </p>
+
+            <!-- Status Badge -->
+            <span
+              class="px-3 py-1 text-sm font-medium rounded-full"
+              [ngClass]="{
+                'bg-green-100 text-green-700': order.status === 'Accepted',
+                'bg-red-100 text-red-700': order.status === 'Rejected',
+                'bg-yellow-100 text-yellow-700': order.status === 'Pending'
+              }"
+            >
+              {{ order.status }}
+            </span>
+          </div>
+          <p class="text-sm text-gray-500">User: {{ order.username }}</p>
+          <p class="text-sm text-gray-500">Order placed on: {{ order.date }}</p>
+          <p class="text-sm text-gray-600">Total: ${{ order.total }}</p>
+          
+        </div>
+
+        <!-- Status Dropdown -->
+        <div class="flex items-center gap-x-3">
+          <select
+            [(ngModel)]="order.status"
+            (change)="updateOrderStatus(order.id, order.status)"
+            class="px-3 py-2 rounded-md text-sm shadow-sm"
+          >
+            <option value="Pending">Pending</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+
+          <!-- Show Details Button -->
+          <button
+            (click)="toggleDetails(order.id)"
+            class="flex items-center bg-gray-900 text-white px-4 py-2 text-sm rounded-md hover:bg-gray-700 transition"
+          >
+            Show Details
+            <svg
+              class="w-4 h-4 ml-2 transition-transform duration-300"
+              [ngClass]="{ 'rotate-180': expandedOrder === order.id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Expanded Order Details -->
+      <div
+        *ngIf="expandedOrder === order.id"
+        class="mt-4 border-t pt-4 space-y-3"
+      >
+        <p class="text-gray-700 font-semibold">Items:</p>
+        <ul class="mt-2 space-y-2">
+          <li *ngFor="let item of order.items" class="text-gray-600">
+            {{ item.quantity }}x {{ item.title }} (${{ item.price }})
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

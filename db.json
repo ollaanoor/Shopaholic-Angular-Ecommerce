@@ -1,0 +1,375 @@
+{
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$4TsnRo1ImJ0WLWe/LByzjOnDzxm5TppyMwMRENS5eLfpVpQFcM0bq",
+      "username": "admin",
+      "id": "ARSM2Jz",
+      "role": "admin"
+    },
+    {
+      "email": "user@gmail.com",
+      "password": "$2a$10$nnV304KUTlKIgDyu.qwHx.O8vNx6K.o4sb3rCtIeZnO3nUV4bdnxK",
+      "username": "user22",
+      "gender": "female",
+      "profileImage": null,
+      "role": "user",
+      "cart": [],
+      "wishlist": [
+        {
+          "id": "12",
+          "title": "Sneakers",
+          "category": "Shoes",
+          "image": "images/sneakers.png",
+          "sizes": [
+            "36",
+            "37",
+            "38",
+            "39",
+            "40"
+          ],
+          "description": "Comfortable sneakers for casual outings.",
+          "price": 600
+        },
+        {
+          "id": "2",
+          "title": "Blouse",
+          "category": "Clothes",
+          "image": "images/blouse.png",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "description": "Stylish blouse for casual and formal wear.",
+          "price": 700
+        },
+        {
+          "id": "3",
+          "title": "Necklace",
+          "category": "Jewelry",
+          "image": "images/necklace.png",
+          "description": "Beautiful necklace to complement your outfit.",
+          "price": 300
+        },
+        {
+          "id": "8",
+          "title": "Sunglasses",
+          "category": "Accessories",
+          "image": "images/sunglasses.png",
+          "description": "Stylish sunglasses to protect your eyes.",
+          "price": 350
+        },
+        {
+          "id": "6",
+          "title": "Shoulder Bag",
+          "category": "Bags",
+          "image": "images/shoulder-bag.png",
+          "description": "Spacious shoulder bag for daily use.",
+          "price": 800
+        },
+        {
+          "id": "5",
+          "title": "Boots",
+          "category": "Shoes",
+          "image": "images/boots.png",
+          "sizes": [
+            "36",
+            "37",
+            "38",
+            "39",
+            "40"
+          ],
+          "description": "Stylish boots for a trendy look.",
+          "price": 750
+        }
+      ],
+      "id": "hW92gmt",
+      "confirmPassword": "123456"
+    }
+  ],
+  "orders": [
+    {
+      "userId": "hW92gmt",
+      "username": "user22",
+      "items": [
+        {
+          "id": "1",
+          "title": "Heels",
+          "category": "Shoes",
+          "image": "images/heels.png",
+          "sizes": [
+            "36",
+            "37",
+            "38",
+            "39",
+            "40"
+          ],
+          "description": "Elegant heels perfect for any occasion.",
+          "price": 500,
+          "quantity": 1,
+          "selectedSize": "36"
+        },
+        {
+          "id": "4",
+          "title": "Shirt",
+          "category": "Clothes",
+          "image": "images/shirt.png",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "description": "Classic shirt for everyday wear.",
+          "price": 650,
+          "selectedSize": "L",
+          "quantity": 1
+        }
+      ],
+      "date": "Jun 14, 2025",
+      "total": 1150,
+      "status": "Rejected",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "title": "Clothes",
+      "image": "images/blouse.png"
+    },
+    {
+      "id": "2",
+      "title": "Jewelry",
+      "image": "images/necklace.png"
+    },
+    {
+      "id": "3",
+      "title": "Shoes",
+      "image": "images/heels.png"
+    },
+    {
+      "id": "4",
+      "title": "Bags",
+      "image": "images/shoulder-bag.png"
+    },
+    {
+      "id": "5",
+      "title": "Accessories",
+      "image": "images/accessories.png"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "Heels",
+      "category": "Shoes",
+      "image": "images/heels.png",
+      "sizes": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "description": "Elegant heels perfect for any occasion.",
+      "price": 500
+    },
+    {
+      "id": "2",
+      "title": "Blouse",
+      "category": "Clothes",
+      "image": "images/blouse.png",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": "Stylish blouse for casual and formal wear.",
+      "price": 700
+    },
+    {
+      "id": "3",
+      "title": "Necklace",
+      "category": "Jewelry",
+      "image": "images/necklace.png",
+      "description": "Beautiful necklace to complement your outfit.",
+      "price": 300
+    },
+    {
+      "id": "4",
+      "title": "Shirt",
+      "category": "Clothes",
+      "image": "images/shirt.png",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": "Classic shirt for everyday wear.",
+      "price": 650
+    },
+    {
+      "id": "5",
+      "title": "Boots",
+      "category": "Shoes",
+      "image": "images/boots.png",
+      "sizes": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "description": "Stylish boots for a trendy look.",
+      "price": 750
+    },
+    {
+      "id": "6",
+      "title": "Shoulder Bag",
+      "category": "Bags",
+      "image": "images/shoulder-bag.png",
+      "description": "Spacious shoulder bag for daily use.",
+      "price": 800
+    },
+    {
+      "id": "7",
+      "title": "Clutch",
+      "category": "Bags",
+      "image": "images/clutch.png",
+      "description": "Elegant clutch for evening outings.",
+      "price": 550
+    },
+    {
+      "id": "8",
+      "title": "Sunglasses",
+      "category": "Accessories",
+      "image": "images/sunglasses.png",
+      "description": "Stylish sunglasses to protect your eyes.",
+      "price": 350
+    },
+    {
+      "id": "9",
+      "title": "Men's Watch",
+      "category": "Accessories",
+      "image": "images/wrist-watch.png",
+      "description": "Classic",
+      "price": 850
+    },
+    {
+      "id": "10",
+      "title": "Cap",
+      "category": "Accessories",
+      "image": "images/cap.png",
+      "description": "Casual cap for everyday wear.",
+      "price": 100
+    },
+    {
+      "id": "11",
+      "title": "Vintage Ring",
+      "category": "Jewelry",
+      "image": "images/ring.png",
+      "description": "Unique vintage ring for special occasions.",
+      "price": 900
+    },
+    {
+      "id": "12",
+      "title": "Sneakers",
+      "category": "Shoes",
+      "image": "images/sneakers.png",
+      "sizes": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "description": "Comfortable sneakers for casual outings.",
+      "price": 600
+    },
+    {
+      "id": "13",
+      "title": "Biker Jacket",
+      "category": "Clothes",
+      "image": "images/women-s-biker-jacket.png",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": "Stylish biker jacket for a rugged look.",
+      "price": 400
+    },
+    {
+      "id": "14",
+      "title": "Keychain",
+      "category": "Accessories",
+      "image": "images/keychain.png",
+      "description": "Cute keychain to keep your keys organized.",
+      "price": 150
+    },
+    {
+      "id": "15",
+      "title": "Cozy Scarf",
+      "category": "Accessories",
+      "image": "images/scarf.png",
+      "description": "Warm and cozy scarf for chilly days.",
+      "price": 200
+    },
+    {
+      "id": "16",
+      "title": "Beach Hat",
+      "category": "Accessories",
+      "image": "images/beach-hat.png",
+      "description": "Stylish beach hat for sunny days.",
+      "price": 120
+    },
+    {
+      "id": "17",
+      "title": "Leather Wallet",
+      "category": "Accessories",
+      "image": "images/wallet.png",
+      "description": "Elegant leather wallet for everyday use.",
+      "price": 400
+    },
+    {
+      "id": "18",
+      "title": "Wool Hat",
+      "category": "Accessories",
+      "image": "images/wool-hat.png",
+      "description": "Warm wool hat for cold weather.",
+      "price": 180
+    },
+    {
+      "title": "test22",
+      "category": "test",
+      "image": "",
+      "price": 123,
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": "test",
+      "id": "VH1vazu"
+    },
+    {
+      "title": "product",
+      "category": "test",
+      "image": "",
+      "price": 123,
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": "tesstt",
+      "id": "cS430r-"
+    }
+  ]
+}
