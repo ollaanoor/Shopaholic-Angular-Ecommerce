@@ -22,7 +22,7 @@ Welcome to **Shopaholic**, a modern and minimalistic e-commerce platform designe
 Clone the repository and install dependencies:
 
 ```sh
-git clone https://github.com/ollaanoor/Shopaholic-Angular-Ecommerce-.git
+git clone https://github.com/ollaanoor/Shopaholic-Angular-Ecommerce.git
 cd shopaholic
 npm install
 ```
@@ -81,13 +81,12 @@ npx json-server-auth db.json
 
 ![Wishlist - Mobile](src/assets/screenshots/wishlist-mobile.png)
 
-## Product Page & Cart 
-# (desktop view)
+## Product Page & Cart (desktop view)
 ![Product Page - Desktop](src/assets/screenshots/product-page.png)
 
 ![Cart Page - Desktop](src/assets/screenshots/cart.png)
 
-# (mobile view)
+## Product Page & Cart (mobile view)
 ![Product Page - Mobile](src/assets/screenshots/product-mobile.png)
 
 ![Cart Page - Mobile](src/assets/screenshots/cart-mobile.png)
