@@ -44,6 +44,7 @@ npx json-server-auth db.json
 ```
 
 ## Folder structure
+```
 /src
  ├── /app
  │   ├── /components       # UI Components
@@ -54,9 +55,11 @@ npx json-server-auth db.json
  ├── db.json               # Mock Database
  ├── angular.json          # Angular Config
  ├── package.json          # Dependencies
+```
 
 ## 🖥️ Desktop View
 ![Homepage - Desktop](src/assets/screenshots/home.png)
+
 ![Homepage2 - Desktop](src/assets/screenshots/home-products.png)
 
 ## 📱 Mobile View
@@ -64,6 +67,7 @@ npx json-server-auth db.json
 
 ## Register
 ![Register - Desktop](src/assets/screenshots/register-step-1.png)
+
 ![Register - Desktop2](src/assets/screenshots/register-step-2.png)
 
 ## Login
@@ -74,26 +78,33 @@ npx json-server-auth db.json
 
 ## Wishlist
 ![Wishlist - Desktop](src/assets/screenshots/wishlist.png)
+
 ![Wishlist - Mobile](src/assets/screenshots/wishlist-mobile.png)
 
 ## Product Page & Cart 
 # (desktop view)
 ![Product Page - Desktop](src/assets/screenshots/product-page.png)
+
 ![Cart Page - Desktop](src/assets/screenshots/cart.png)
 
 # (mobile view)
 ![Product Page - Mobile](src/assets/screenshots/product-mobile.png)
+
 ![Cart Page - Mobile](src/assets/screenshots/cart-mobile.png)
 
 ## User Profile
 ![Profile - Mobile](src/assets/screenshots/profile.png)
+
 ![Edit Profile - Mobile](src/assets/screenshots/edit-profile.png)
 
 ## Admin
 # Product Manager
 ![Admin Home - Desktop](src/assets/screenshots/admin-product-manager.png)
+
 ![Admin Search - Desktop](src/assets/screenshots/admin-product-manager-search.png)
+
 ![Admin Add Product - Desktop](src/assets/screenshots/admin-add-product.png)
+
 ![Admin Update Product - Desktop](src/assets/screenshots/admin-update-product.png)
 
 # Order Manager
